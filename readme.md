@@ -204,7 +204,7 @@ require('chokidar')
 
 ## Regex filter
 
-Default filter is all html files: `/\.html$/i`. You can set the [match option](#options) to filter which file htmly must handle.
+Default filter is all html, xhtml (?) and svg files : `/\.(html|xhtml|svg)$/i`. You can set the [match option](#options) to filter which file htmly must handle.
 
 `match` option is either a String or an Array used to instantiate a new [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions):
 
@@ -318,7 +318,79 @@ Remedy options are the same of [the htmly's transform options](#options).
 
 <!-- START HtmlyBrowser -->
 
-<!-- END CssyBrowser -->
+## HtmlyBrowser()
+> HtmlyBrowser is the object exported by a module handled by htmly:
+
+```javascript
+var myHtml = require('./my.html');
+// myHtml is a HtmlyBrowser
+```
+
+A HtmlyBrowser instance can be used as:
+
+- **An string** when used in a context that imply a string: thanks to
+  `HtmlyBrowser.toString()` that return the html source.
+- **A function**, alias of HtmlyBrowser.insert(to), to inject
+  the html source in the document: `myHtml(parent)`.
+- **An object** with the methods described below.
+
+**return** {`Object`}
+See [HtmlyBrowser.insert()](#htmlybrowserinsertto)
+
+
+## HtmlyBrowser.insert(to)
+> Insert html source in the DOM
+
+The content of all the injected html source is binded to html source
+change: When `.update()` is called by you or by the htmly's live source
+reload server.
+
+**Parameters:**
+
+  - **to** {`HTMLElement`|`Document`|`ShadowRoot`}
+    Where to inject the html source using innerHTML.
+
+**return** {`Object`}
+An object with one method:
+- `remove` **{Function}**: Remove injected source
+
+
+## HtmlyBrowser.update(src)
+> Update current html source
+
+Each inject style element are updated too
+
+**Parameters:**
+
+  - **src** {`String`}
+
+
+
+## HtmlyBrowser.onChange(listener)
+> Listen for html source changes
+
+**Parameters:**
+
+  - **listener** {`Function`}
+    Change listener. Receive new html source
+
+
+## HtmlyBrowser.offChange(listener)
+> Detach change listener
+
+**Parameters:**
+
+  - **listener** {`Function`}
+
+
+
+## HtmlyBrowser.toString()
+> Override default toString()
+
+**return** {`String`}
+The current html source
+
+<!-- END HtmlyBrowser -->
 
 ---
 
