@@ -32,7 +32,8 @@
     "lrio": "0.0.3",
     "relative-package": "^1.0.0",
     "resolve": "^1.0.0",
-    "through2": "^1.1.1"
+    "through2": "^1.1.1",
+    "syntax-error": "^1.1.1"
   },
   "devDependencies": {
     "browserify": "^5.12.1",
@@ -40,8 +41,7 @@
     "expect.js": "*",
     "jsdom": "^1.0.0",
     "jshint": "*",
-    "mocha": "*",
-    "syntax-error": "^1.1.1"
+    "mocha": "*"
   },
   "browser": "./src/htmly-browser.js",
   "keywords": [
