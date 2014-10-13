@@ -1,4 +1,4 @@
-# htmly [![Build Status](https://secure.travis-ci.org/limpidjs/htmly.png?branch=master)](http://travis-ci.org/limpidjs/htmly) [![NPM version](https://badge-me.herokuapp.com/api/npm/htmly.png)](http://badges.enytc.com/for/npm/htmly)
+# htmly [![Build Status](https://secure.travis-ci.org/nodys/htmly.png?branch=master)](http://travis-ci.org/nodys/htmly) [![NPM version](https://badge-me.herokuapp.com/api/npm/htmly.png)](http://badges.enytc.com/for/npm/htmly)
 
 > A browserify transform for html (with vitamins): Use html sources **like any other module** but **without forgo** the benefits of **pre-processing** and **live source reload**.
 
