@@ -1,6 +1,13 @@
 Changelog
 =========
 
+v0.2.0 - Efficacious Snake (2014-10-24) 
+----------------------------------------------------------------------
+
+  - fix: Attache live server only once
+  - fix: Use last version of chokidar and update code according to new requirements
+
+
 v0.1.2 - Heuristic Camel (2014-10-13) 
 ----------------------------------------------------------------------
 
