@@ -42,6 +42,7 @@ In you `package.json` you can add some options for the current package (`[ "html
 - `parser` **{Array|String}**: One or many path to module that export a [parser](#parser)
 - `processor` **{Array|String}**: One or many path to module that export a [processor](#processor)
 - `match` **{String|Array}**: Filter which file htmly must handle. See [Regex filter](#regex-filter)
+- `checkHtml` **{Boolean}**: Basic check that source is html-like to prevent transform on source that as already been handled by another transform (default: true - That imply that source must begin by a `<` char according to regex: `/^\s*</`)
 
 Path inside `parser` and `processor` options are either relative to package.json or npm package.
 
