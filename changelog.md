@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v0.3.0 - Candid Bear (2014-10-28) 
+----------------------------------------------------------------------
+
+  - feat: Add checkHtml option to prevent source transformation is source is not an html-like source
+
+
 v0.2.0 - Efficacious Snake (2014-10-24) 
 ----------------------------------------------------------------------
 
