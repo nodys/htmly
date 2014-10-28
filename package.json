@@ -1,6 +1,6 @@
 {
   "name": "htmly",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A browserify transform for html (with vitamines)",
   "main": "./lib/htmly.js",
   "scripts": {
