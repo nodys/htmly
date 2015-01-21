@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v0.4.1 - Soft Chimpanzee (2015-01-21) 
+----------------------------------------------------------------------
+
+  - test: Upgrade jsdom and fix fixtures - can not longer use template tag
+
+
 v0.4.0 - Helpful Goldfish (2015-01-21) 
 ----------------------------------------------------------------------
 
