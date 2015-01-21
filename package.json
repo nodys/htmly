@@ -39,7 +39,7 @@
     "browserify": "^5.12.1",
     "docflux": "^1.1.2",
     "expect.js": "*",
-    "jsdom": "^1.0.0",
+    "jsdom": "^3.0.1",
     "jshint": "*",
     "mocha": "*"
   },
