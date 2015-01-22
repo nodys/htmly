@@ -10,6 +10,8 @@ myHtml.onChange(function(html) { }) // Watch for change (hey, you like live sour
 console.log('Source: %s', myHtml)   // Use as a string
 ```
 
+See [exemple with cssy, htmly and lrio](https://github.com/nodys/cssy/tree/master/exemples)
+
 ## Features
 
 - **Require html as any other commonjs module**: `require('foo/my.html')`.
