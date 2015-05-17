@@ -10,7 +10,8 @@
     "debugtest": "node-debug _mocha",
     "coverage": "rm -rf ./lib-cov && jscoverage ./lib ./lib-cov && COVERAGE=true mocha --reporter html-cov > ./coverage.html || true && rm -rf ./lib-cov",
     "jshint": "./node_modules/.bin/jshint --exclude node_modules",
-    "doc": "./support/updatedoc.js"
+    "doc": "./support/updatedoc.js",
+    "standard": "standard"
   },
   "repository": {
     "type": "git",
@@ -42,7 +43,8 @@
     "expect.js": "*",
     "jsdom": "^3.0.1",
     "jshint": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "standard": "^3.9.0"
   },
   "browser": "./src/htmly-browser.js",
   "keywords": [

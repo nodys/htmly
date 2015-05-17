@@ -1,127 +1,130 @@
-/* jshint undef: false, unused: false */
+/* global describe it */
 
-var expect  = require('expect.js')
-var utils   = (process.env.COVERAGE ? require('../lib-cov/utils.js') : require('../lib/utils.js'))
-var fixp    = require('./support').fixp
+var expect = require('expect.js')
+var utils = (process.env.COVERAGE ? require('../lib-cov/utils.js') : require('../lib/utils.js'))
+var fixp = require('./support').fixp
 var resolve = require('path').resolve
 
-describe('htmly utils', function(){
-
-  describe('.toAsync()', function() {
-    it('should transform a sync function to an async one', function(done) {
-      var foo = utils.toAsync(function(arg) {
-        return 35 + arg;
+describe('htmly utils', function () {
+  describe('.toAsync()', function () {
+    it('should transform a sync function to an async one', function (done) {
+      var foo = utils.toAsync(function (arg) {
+        return 35 + arg
       })
-      foo(7, function(err, result) {
+      foo(7, function (err, result) {
+        if (err) {
+          return done(err)
+        }
         expect(result).to.eql(42)
-        done();
+        done()
       })
     })
 
-    it('should not call callback twice', function() {
-      var calls = 0;
-      var foo = utils.toAsync(function(callback) {
+    it('should not call callback twice', function () {
+      var calls = 0
+      var foo = utils.toAsync(function (callback) {
         callback(null, 42)
-        return 42; // ! undefined
+        return 42 // ! undefined
       })
-      foo(function(err, result) { calls++ })
-      expect(calls).to.eql(1);
+      foo(function (_, result) { calls++ })
+      expect(calls).to.eql(1)
     })
 
-    it('should catch errors', function(done) {
-      var foo = utils.toAsync(function() {
+    it('should catch errors', function (done) {
+      var foo = utils.toAsync(function () {
         throw new Error('Ouch')
       })
-      foo(function(err) {
+      foo(function (err) {
         expect(err).to.be.an(Error)
-        done();
+        done()
       })
     })
 
-    it('should throw an error on invalid argument', function() {
-      expect(function() {
+    it('should throw an error on invalid argument', function () {
+      expect(function () {
         utils.toAsync('invalid')
       }).to.throwError('Invalid argument')
     })
   })
 
-  describe('.compose()', function() {
-    it('should create a composed function from sync and async functions', function(done) {
+  describe('.compose()', function () {
+    it('should create a composed function from sync and async functions', function (done) {
       var compo = utils.compose([
-        function(arg)       { return     arg + 'B'  },
-        function(arg, done) { done(null, arg + 'C') },
-        function(arg)       { return     arg + 'D'  },
+        function (arg) { return arg + 'B' },
+        function (arg, done) { done(null, arg + 'C') },
+        function (arg) { return arg + 'D' }
       ])
 
-      expect(compo).to.be.a(Function);
+      expect(compo).to.be.a(Function)
 
-      compo('A', function(err, result) {
+      compo('A', function (_, result) {
         expect(result).to.eql('ABCD')
         done()
       })
     })
 
-    it('should catch sync error', function(done) {
+    it('should catch sync error', function (done) {
       var compo = utils.compose([
-        function(arg)       { throw(new Error('Oups')) },
+        function (arg) {
+          throw (new Error('Oups'))
+        }
       ])
-      compo('A', function(err) {
+      compo('A', function (err) {
         expect(err).to.be.an(Error)
         done()
       })
     })
 
-    it('should catch async error', function(done) {
+    it('should catch async error', function (done) {
       var compo = utils.compose([
-        function(arg, done) { done(new Error('Oups')) },
+        function (arg, done) {
+          done(new Error('Oups'))
+        }
       ])
-      compo('A', function(err) {
+      compo('A', function (err) {
         expect(err).to.be.an(Error)
         done()
       })
     })
 
-    it('should work with an empty list of function (pass arguments through)', function(done) {
+    it('should work with an empty list of function (pass arguments through)', function (done) {
       var compo = utils.compose([])
-      compo('A', function(err, result) {
+      compo('A', function (_, result) {
         expect(result).to.eql('A')
         done()
       })
     })
 
-    it('should throw an error on invalid argument', function() {
-      expect(function() {
+    it('should throw an error on invalid argument', function () {
+      expect(function () {
         utils.compose('invalid')
       }).to.throwError('Invalid argument')
     })
   })
 
-  describe('.getHtmlyConfig()', function() {
-    var pkgpath = fixp('getconfig/package.json');
+  describe('.getHtmlyConfig()', function () {
+    var pkgpath = fixp('getconfig/package.json')
 
-    it('should get the htmly config for given package.json path', function() {
+    it('should get the htmly config for given package.json path', function () {
       expect(utils.getHtmlyConfig(pkgpath))
-        .to.eql({ "processor": "./htmlProcessor.js" })
+        .to.eql({ 'processor': './htmlProcessor.js' })
     })
 
-    it('should get the htmly config for given package.json object', function() {
+    it('should get the htmly config for given package.json object', function () {
       expect(utils.getHtmlyConfig(require(pkgpath)))
-        .to.eql({ "processor": "./htmlProcessor.js" })
+        .to.eql({ 'processor': './htmlProcessor.js' })
     })
 
-    it('should return an empty config object if package can not be read', function() {
+    it('should return an empty config object if package can not be read', function () {
       expect(utils.getHtmlyConfig('invalid')).to.eql({})
 
     })
   })
 
-  describe('.getCwdPackagePath()', function() {
-    it('should get cwd package.json path', function() {
+  describe('.getCwdPackagePath()', function () {
+    it('should get cwd package.json path', function () {
       expect(utils.getCwdPackagePath())
         .to.eql(resolve(__dirname, '../package.json'))
     })
   })
-
-
-
 })
