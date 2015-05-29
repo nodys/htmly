@@ -1,6 +1,13 @@
 Changelog
 =========
 
+v1.1.0 - Sensitive Owl (2015-05-29) 
+----------------------------------------------------------------------
+
+  - doc: Update badges coverage and api doc
+  - test: Use iojs for test (required by jsdom)
+
+
 v1.0.2 - Proud Giraffe (2015-05-17) 
 ----------------------------------------------------------------------
 
