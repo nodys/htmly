@@ -1,4 +1,15 @@
-# htmly [![Build Status](https://secure.travis-ci.org/nodys/htmly.png?branch=master)](http://travis-ci.org/nodys/htmly) [![NPM version](https://badge-me.herokuapp.com/api/npm/htmly.png)](http://badges.enytc.com/for/npm/htmly)
+# htmly
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+[![travis][travis-image]][travis-url]
+[![npm][npm-image]][npm-url]
+[![downloads][downloads-image]][downloads-url]
+
+[travis-image]: https://img.shields.io/travis/nodys/htmly.svg?style=flat&branch=master
+[travis-url]: https://travis-ci.org/nodys/htmly
+[npm-image]: https://img.shields.io/npm/v/htmly.svg?style=flat
+[npm-url]: https://npmjs.org/package/htmly
+[downloads-image]: https://img.shields.io/npm/dm/htmly.svg?style=flat
+[downloads-url]: https://npmjs.org/package/htmly
 
 > A browserify transform for html (with vitamins): Use html sources **like any other module** but **without forgo** the benefits of **pre-processing** and **live source reload**.
 
@@ -55,7 +66,7 @@ Path inside `parser` and `processor` options are either relative to package.json
   // ...
   "browserify": { "transform": [
     [ "htmly",
-      {  
+      {
         "parser"   : [
           "./myHtmlParser",
         ],
@@ -325,7 +336,7 @@ Remedy options are the same of [the htmly's transform options](#options).
 > HtmlyBrowser is the object exported by a module handled by htmly:
 
 ```javascript
-var myHtml = require('./my.html');
+var myHtml = require('./my.html')
 // myHtml is a HtmlyBrowser
 ```
 
@@ -356,6 +367,7 @@ reload server.
 **return** {`Object`}
 An object with one method:
 - `remove` **{Function}**: Remove injected source
+- `remove` **{Function}**: Remove injected source
 
 
 ## HtmlyBrowser.update(src)
@@ -375,6 +387,7 @@ Each inject style element are updated too
 **Parameters:**
 
   - **listener** {`Function`}
+    Change listener. Receive new html source
     Change listener. Receive new html source
 
 
@@ -398,3 +411,5 @@ The current html source
 ---
 
 License: [The MIT license](./LICENSE)
+
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
