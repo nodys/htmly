@@ -1,4 +1,4 @@
-/* global describe it */
+/* global describe it  */
 
 var expect = require('expect.js')
 var utils = (process.env.COVERAGE ? require('../lib-cov/utils.js') : require('../lib/utils.js'))
@@ -12,11 +12,8 @@ describe('htmly utils', function () {
         return 35 + arg
       })
       foo(7, function (err, result) {
-        if (err) {
-          return done(err)
-        }
         expect(result).to.eql(42)
-        done()
+        done(err)
       })
     })
 
@@ -57,9 +54,9 @@ describe('htmly utils', function () {
 
       expect(compo).to.be.a(Function)
 
-      compo('A', function (_, result) {
+      compo('A', function (err, result) {
         expect(result).to.eql('ABCD')
-        done()
+        done(err)
       })
     })
 
@@ -89,9 +86,9 @@ describe('htmly utils', function () {
 
     it('should work with an empty list of function (pass arguments through)', function (done) {
       var compo = utils.compose([])
-      compo('A', function (_, result) {
+      compo('A', function (err, result) {
         expect(result).to.eql('A')
-        done()
+        done(err)
       })
     })
 
@@ -107,12 +104,12 @@ describe('htmly utils', function () {
 
     it('should get the htmly config for given package.json path', function () {
       expect(utils.getHtmlyConfig(pkgpath))
-        .to.eql({ 'processor': './htmlProcessor.js' })
+        .to.eql({'processor': './htmlProcessor.js' })
     })
 
     it('should get the htmly config for given package.json object', function () {
       expect(utils.getHtmlyConfig(require(pkgpath)))
-        .to.eql({ 'processor': './htmlProcessor.js' })
+        .to.eql({'processor': './htmlProcessor.js' })
     })
 
     it('should return an empty config object if package can not be read', function () {

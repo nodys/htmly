@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var docflux = require('docflux')
 var concat = require('concat-stream')
 var async = require('async')
@@ -6,7 +7,7 @@ var fs = require('fs')
 var resolve = require('path').resolve
 
 var DEPTH = process.env.DEPTH || 2
-var INDENT = process.env.INDENT ? true : false
+var INDENT = process.env.INDENT
 
 // Run
 async.series({
@@ -14,8 +15,8 @@ async.series({
   readme: read('../readme.md')
 }, function (err, results) {
   if (err) {
-    console.error(err.stack)
-    process.exit(1)
+    console.error(err)
+    return
   }
   fs.writeFile(
     resolve(__dirname, '../readme.md'),
