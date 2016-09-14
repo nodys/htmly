@@ -50,7 +50,7 @@ describe('htmly processor', function () {
     proc(source, function (err, result) {
       if (err) return done(err)
       expect(result).to.be.a('object')
-      expect(result.src).to.eql('<div>foobar</div>')
+      expect(result.src.trim()).to.eql('<div>foobar</div>')
       done()
     })
   })
